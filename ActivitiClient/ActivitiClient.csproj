@@ -7,8 +7,8 @@
     <ProjectGuid>{E6F85110-A6BC-408D-B4FC-F2832476691D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ActivitiRestClient</RootNamespace>
-    <AssemblyName>ActivitiRestClient</AssemblyName>
+    <RootNamespace>ActivitiClient</RootNamespace>
+    <AssemblyName>ActivitiClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,13 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivitiRestClient_ProcessInstances.cs" />
-    <Compile Include="ActivitiRestClient_ProcessDefinitions.cs" />
-    <Compile Include="ActivitiRestClient.cs" />
+    <Compile Include="Models\DataSet.cs" />
+    <Compile Include="Models\Form.cs" />
+    <Compile Include="RestClients\Forms.cs" />
+    <Compile Include="RestClients\ProcessInstances.cs" />
+    <Compile Include="RestClients\ProcessDefinitions.cs" />
+    <Compile Include="RestClients\ActivitiRestClient.cs" />
     <Compile Include="Models\Bpmn\Definitions.cs" />
+    <Compile Include="Models\Bpmn\FormValue.cs" />
+    <Compile Include="Models\Bpmn\FormProperty.cs" />
+    <Compile Include="Models\Bpmn\Process.cs" />
+    <Compile Include="Models\Bpmn\Task.cs" />
+    <Compile Include="Models\Exception\ActivitiRestClientException.cs" />
     <Compile Include="Models\ProcessDefinition.cs" />
     <Compile Include="Models\ProcessInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestClients\RestClientBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

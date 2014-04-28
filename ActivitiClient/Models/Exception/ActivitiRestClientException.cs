@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActivitiRestClient.Models.Exception
+namespace ActivitiClient.Models.Exception
 {
     class ActivitiRestClientException : System.Exception
     {

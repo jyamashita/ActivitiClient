@@ -1,5 +1,6 @@
-﻿using ActivitiRestClient.Models;
-using ActivitiRestClient.Models.Bpmn;
+﻿using ActivitiClient.Models;
+using ActivitiClient.Models.Bpmn;
+using ActivitiClient.RestClients;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace ActivitiRestClient
+namespace ActivitiClient.RestClients
 {
-    public class ActivitiRestClient_ProcessInstances
+    public class ProcessDefinitions : RestClientBase
     {
-        #region GetProcessDefinitions
-        public List<ProcessDefinition> GetProcessDefinitions(this ActivitiRestClient @this,
+        public ProcessDefinitions(RestClient client) : base(client) { }
+
+        #region List of process definitions
+        public List<ProcessDefinition> List(
             int? version = null,
             string name = null,
             string nameLike = null,
@@ -29,7 +32,7 @@ namespace ActivitiRestClient
             string startableByUser = null,
             bool? latest = null,
             bool? suspended = null,
-            ActivitiRestClient.Sort? sort = null)
+            RestClientBase.Sort? sort = null)
         {
             var request = new RestRequest("repository/process-definitions", Method.GET);
 
@@ -49,39 +52,30 @@ namespace ActivitiRestClient
             if (suspended != null) request.AddParameter("suspended", suspended);
             if (sort != null) request.AddParameter("sort", sort.ToString());
 
-            var response = @this.Client.Execute<ProcessDefinitions>(request);
-
-            @this.HandleError(response);
-
-            var processDefinitions = response.Data;
-            var processDefinitionList = processDefinitions.Data;
-            if (processDefinitionList.Capacity <= processDefinitions.Total)
-                processDefinitionList.Capacity = processDefinitions.Total;
-            else
-                processDefinitionList.Capacity = processDefinitionList.Count;
-
-            return processDefinitionList;
+            var response = base.Client.Execute<DataSet<ProcessDefinition>>(request);
+            base.HandleError(response);
+            return response.Data.GetData();
         }
         #endregion
 
-        #region GetProcessDefinition
-        public ProcessDefinition GetProcessDefinition(this ActivitiRestClient @this, string processDefinitionId)
+        #region Get a process definition
+        public ProcessDefinition Get(string processDefinitionId)
         {
             var request = new RestRequest("repository/process-definitions/{processDefinitionId}", Method.GET);
             request.AddUrlSegment("processDefinitionId", processDefinitionId);
-            var response = @this.Client.Execute<ProcessDefinition>(request);
-            @this.HandleError(response);
+            var response = this.Client.Execute<ProcessDefinition>(request);
+            base.HandleError(response);
             return response.Data;
         }
         #endregion
 
-        #region Get a process definition BPMN model
-        public Process GetProcessBpmnModel(this ActivitiRestClient @this, string processDefinitionId)
+        #region Get a process definition resource content
+        public Process GetResourcedata(string processDefinitionId)
         {
-            var request = new RestRequest("repository/process-definitions/{processDefinitionId}/model", Method.GET);
+            var request = new RestRequest("repository/process-definitions/{processDefinitionId}/resourcedata", Method.GET);
             request.AddUrlSegment("processDefinitionId", processDefinitionId);
-            var response = @this.Client.Execute(request);
-            @this.HandleError(response);
+            var response = base.Client.Execute(request);
+            base.HandleError(response);
             var serializer = new XmlSerializer(typeof(Definitions));
             Definitions definitions = null;
             using (var crd = new StringReader(response.Content)) {

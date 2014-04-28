@@ -1,4 +1,5 @@
-﻿using ActivitiRestClient.Models.Exception;
+﻿using ActivitiClient.Models;
+using ActivitiClient.Models.Exception;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -7,23 +8,23 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActivitiRestClient
+namespace ActivitiClient.RestClients
 {
-    public class ActivitiRestClient
+    public class RestClientBase
     {
         public enum Sort { name, id, key, category, deploymentId, version }
 
         public enum Order { asc, desc }
 
-        public RestClient Client { get; set; }
+        protected RestClient Client { get; set; }
 
-        public ActivitiRestClient(string baseurl, string user, string password)
+        public RestClientBase(RestClient client)
         {
-            this.Client = new RestClient(baseurl);
-            this.Client.Authenticator = new HttpBasicAuthenticator(user, password);
+            this.Client = client;
         }
 
-        public void HandleError(IRestResponse response)
+        #region HandleError
+        protected void HandleError(IRestResponse response)
         {
             if (response.StatusCode != HttpStatusCode.OK &&
                 response.StatusCode != HttpStatusCode.Created)
@@ -31,5 +32,6 @@ namespace ActivitiRestClient
                 throw new ActivitiRestClientException(response.StatusDescription);
             }
         }
+        #endregion
     }
 }
