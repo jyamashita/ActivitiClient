@@ -42,8 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\IRestRequest.cs" />
     <Compile Include="Models\DataSet.cs" />
     <Compile Include="Models\Form.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="RestClients\Tasks.cs" />
     <Compile Include="RestClients\Forms.cs" />
     <Compile Include="RestClients\ProcessInstances.cs" />
     <Compile Include="RestClients\ProcessDefinitions.cs" />

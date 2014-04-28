@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using ActivitiClient.Extensions;
 
 namespace ActivitiClient.RestClients
 {
@@ -36,21 +37,21 @@ namespace ActivitiClient.RestClients
         {
             var request = new RestRequest("repository/process-definitions", Method.GET);
 
-            if (version != null) request.AddParameter("version", version);
-            if (name != null) request.AddParameter("name", name);
-            if (nameLike != null) request.AddParameter("nameLike", nameLike);
-            if (key != null) request.AddParameter("key", key);
-            if (keyLike != null) request.AddParameter("keyLike", keyLike);
-            if (resourceName != null) request.AddParameter("resourceName", resourceName);
-            if (resourceNameLike != null) request.AddParameter("resourceNameLike", resourceNameLike);
-            if (category != null) request.AddParameter("category", category);
-            if (categoryLike != null) request.AddParameter("categoryLike", categoryLike);
-            if (categoryNotEquals != null) request.AddParameter("categoryNotEquals", categoryNotEquals);
-            if (deploymentId != null) request.AddParameter("deploymentId", deploymentId);
-            if (startableByUser != null) request.AddParameter("startableByUser", startableByUser);
-            if (latest != null) request.AddParameter("latest", latest);
-            if (suspended != null) request.AddParameter("suspended", suspended);
-            if (sort != null) request.AddParameter("sort", sort.ToString());
+            request.AddParameterIfNotNull("version", version);
+            request.AddParameterIfNotNull("name", name);
+            request.AddParameterIfNotNull("nameLike", nameLike);
+            request.AddParameterIfNotNull("key", key);
+            request.AddParameterIfNotNull("keyLike", keyLike);
+            request.AddParameterIfNotNull("resourceName", resourceName);
+            request.AddParameterIfNotNull("resourceNameLike", resourceNameLike);
+            request.AddParameterIfNotNull("category", category);
+            request.AddParameterIfNotNull("categoryLike", categoryLike);
+            request.AddParameterIfNotNull("categoryNotEquals", categoryNotEquals);
+            request.AddParameterIfNotNull("deploymentId", deploymentId);
+            request.AddParameterIfNotNull("startableByUser", startableByUser);
+            request.AddParameterIfNotNull("latest", latest);
+            request.AddParameterIfNotNull("suspended", suspended);
+            request.AddParameterIfNotNull("sort", sort);
 
             var response = base.Client.Execute<DataSet<ProcessDefinition>>(request);
             base.HandleError(response);

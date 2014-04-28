@@ -16,7 +16,13 @@ namespace ActivitiClient.RestClients
 
         public enum Order { asc, desc }
 
+        public enum Action { complete, claim, @delegate, resolve }
+
         protected RestClient Client { get; set; }
+
+        #region const
+        protected static const string ISO_DATE = "YYYY-MM-DDThh:mm:sssTZD";
+        #endregion
 
         public RestClientBase(RestClient client)
         {

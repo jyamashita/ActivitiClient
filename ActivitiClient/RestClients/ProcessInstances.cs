@@ -15,7 +15,7 @@ namespace ActivitiClient.RestClients
         public ProcessInstances(RestClient client) : base(client) { }
 
         #region Get a process instance
-        public ProcessInstance GetProcessInstance(int processInstanceId)
+        public ProcessInstance Get(int processInstanceId)
         {
             var request = new RestRequest("runtime/process-instances/{processInstanceId}", Method.GET);
             request.AddUrlSegment("processDefinitionId", processInstanceId.ToString());
@@ -26,7 +26,7 @@ namespace ActivitiClient.RestClients
         #endregion
 
         #region Start a process instance
-        public ProcessInstance StartProcessInstance(
+        public ProcessInstance Start(
             string processDefinitionId,
             NameValueCollection collection = null,
             string businessKey = null,
