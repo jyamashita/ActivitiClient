@@ -21,7 +21,7 @@ namespace ActivitiClient.RestClients
         protected RestClient Client { get; set; }
 
         #region const
-        protected static const string ISO_DATE = "YYYY-MM-DDThh:mm:sssTZD";
+        protected const string ISO_DATE = "YYYY-MM-DDThh:mm:sssTZD";
         #endregion
 
         public RestClientBase(RestClient client)

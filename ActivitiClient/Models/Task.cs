@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ActivitiClient.Models
 {
-    class Task
+    public class Task
     {
         public string Assignee { get; set; }
 
