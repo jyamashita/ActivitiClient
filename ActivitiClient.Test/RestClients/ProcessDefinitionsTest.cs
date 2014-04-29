@@ -27,9 +27,9 @@ namespace ActivitiClient.Test.RestClients
         }
 
         [TestMethod]
-        public void GetBpmnByXmlTest()
+        public void GetResourcedataTest()
         {
-            var model = this.Client.ProcessDefinitions.GetResourcedata("assessment:1:1612");
+            var model = this.Client.ProcessDefinitions.GetResourcedata("assessment:2:1704");
         }
     }
 }

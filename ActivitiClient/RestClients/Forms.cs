@@ -44,6 +44,7 @@ namespace ActivitiClient.RestClients
                 businessKey = businessKey,
                 properties = param,
             };
+            request.RequestFormat = DataFormat.Json;
             request.AddBody(json);
             var response = base.Client.Execute<Models.Task>(request);
             base.HandleError(response);

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ActivitiClient.RestClients;
+using System.Collections.Specialized;
 
 namespace ActivitiClient.Test.RestClients
 {
@@ -21,9 +22,15 @@ namespace ActivitiClient.Test.RestClients
         }
 
         [TestMethod]
-        public void GetTest()
+        public void StartTest()
         {
-            var processDefinition = this.Client.ProcessInstances.Start("assessment:1:1612");
+            var collection = new NameValueCollection();
+            collection.Add("title", "タイトル");
+            collection.Add("level", "5");
+            collection.Add("approver", "test01");
+            collection.Add("system-test", "テスト値");
+            var processDefinition = this.Client.ProcessInstances.Start("assessment:4:1712",
+                collection: collection);
         }
     }
 }

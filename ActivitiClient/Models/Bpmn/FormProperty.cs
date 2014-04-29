@@ -14,7 +14,10 @@ namespace ActivitiClient.Models.Bpmn
 
         [XmlAttribute("name")]
         public string Name { get; set; }
-
+        
+        [XmlAttribute("type")]
+        public string Type { get; set; }
+        
         [XmlAttribute("value")]
         public string Value { get; set; }
 
@@ -29,7 +32,7 @@ namespace ActivitiClient.Models.Bpmn
 
         [XmlAttribute("datePattern")]
         public string DatePattern { get; set; }
-
+        
         [XmlElement("value", Namespace = "http://activiti.org/bpmn")]
         public List<EnumValue> EnumValues { get; set; }
     }

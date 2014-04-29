@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\IRestRequest.cs" />
+    <Compile Include="Extensions\RestRequest.cs" />
+    <Compile Include="Extensions\StringExtention.cs" />
     <Compile Include="Models\DataSet.cs" />
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\Task.cs" />
@@ -52,7 +53,7 @@
     <Compile Include="RestClients\ProcessDefinitions.cs" />
     <Compile Include="RestClients\ActivitiRestClient.cs" />
     <Compile Include="Models\Bpmn\Definitions.cs" />
-    <Compile Include="Models\Bpmn\FormValue.cs" />
+    <Compile Include="Models\Bpmn\EnumValue.cs" />
     <Compile Include="Models\Bpmn\FormProperty.cs" />
     <Compile Include="Models\Bpmn\Process.cs" />
     <Compile Include="Models\Bpmn\Task.cs" />

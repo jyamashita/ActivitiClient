@@ -33,7 +33,8 @@ namespace ActivitiClient.RestClients
             string startableByUser = null,
             bool? latest = null,
             bool? suspended = null,
-            RestClientBase.Sort? sort = null)
+            RestClientBase.Sort? sort = null,
+            int? size = null)
         {
             var request = new RestRequest("repository/process-definitions", Method.GET);
 
@@ -52,6 +53,7 @@ namespace ActivitiClient.RestClients
             request.AddParameterIfNotNull("latest", latest);
             request.AddParameterIfNotNull("suspended", suspended);
             request.AddParameterIfNotNull("sort", sort);
+            request.AddParameterIfNotNull("size", size);
 
             var response = base.Client.Execute<DataSet<ProcessDefinition>>(request);
             base.HandleError(response);

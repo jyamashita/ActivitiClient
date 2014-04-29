@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,19 @@ namespace ActivitiClient.Models.Bpmn
         public string Initiator { get; set; }
 
         [XmlArray("extensionElements")]
-        [XmlArrayItem("formProperty ", Namespace = "activiti")]
+        [XmlArrayItem("formProperty", Namespace = "http://activiti.org/bpmn")]
         public List<FormProperty> FormProperty { get; set; }
+
+        #region メソッド
+        public NameValueCollection Extract(NameValueCollection form)
+        {
+            var param = new NameValueCollection();
+            this.FormProperty.ForEach(prop => {
+                if (!prop.Id.StartsWith("system_"))
+                    param.Add(prop.Id, form.Get(prop.Id));
+            });
+            return param;
+        }
+        #endregion
     }
 }

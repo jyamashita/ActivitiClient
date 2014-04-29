@@ -33,7 +33,7 @@ namespace ActivitiClient.RestClients
             string tenantId = null,
             string message = null)
         {
-            var request = new RestRequest("runtime/process-instances/{processInstanceId}", Method.POST);
+            var request = new RestRequest("runtime/process-instances", Method.POST);
             var param = (from name in collection.AllKeys
                         select new { name, value = collection.Get(name) }).ToList();
             var json = new {
@@ -43,6 +43,7 @@ namespace ActivitiClient.RestClients
                 tenantId = tenantId,
                 message = tenantId,
             };
+            request.RequestFormat = DataFormat.Json;
             request.AddBody(json);
             var response = base.Client.Execute<ProcessInstance>(request);
             base.HandleError(response);

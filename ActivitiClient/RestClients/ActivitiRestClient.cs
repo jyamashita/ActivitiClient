@@ -29,6 +29,10 @@ namespace ActivitiClient.RestClients
         public RestClients.ProcessDefinitions ProcessDefinitions { get; set; }
 
         public RestClients.ProcessInstances ProcessInstances { get; set; }
+
+        public RestClients.Tasks Tasks { get; set; }
+
+        public RestClients.Forms Forms { get; set; }
         #endregion
     }
 }
