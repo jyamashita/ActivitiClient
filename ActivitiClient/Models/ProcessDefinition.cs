@@ -35,5 +35,7 @@ namespace ActivitiClient.Models
         public string DiagramResource { get; set; }
 
         public bool StartFormDefined { get; set; }
+
+        public int ProcessId { get { return int.Parse(this.Id.Split(':')[2]); } }
     }
 }
