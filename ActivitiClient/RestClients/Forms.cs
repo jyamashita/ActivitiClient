@@ -1,4 +1,5 @@
 ﻿using ActivitiClient.Models;
+using ActivitiClient.Extensions;
 using ActivitiClient.RestClients;
 using RestSharp;
 using System;
@@ -15,14 +16,14 @@ namespace ActivitiClient.RestClients
         public Forms(RestClient client) : base(client) { }
 
         #region Get form data
-        public Form Get(int taskId, string processDefinitionId)
+        public Form Get(int? taskId = null, string processDefinitionId = null)
         {
             var request = new RestRequest("form/form-data", Method.GET);
-            request.AddParameter("taskId", taskId.ToString());
-            request.AddParameter("processDefinitionId", processDefinitionId);
-            var response = base.Client.Execute<DataSet<Form>>(request);
+            request.AddParameterIfNotNull("taskId", taskId);
+            request.AddParameterIfNotNull("processDefinitionId", processDefinitionId);
+            var response = base.Client.Execute<Form>(request);
             base.HandleError(response);
-            return response.Data.GetData().FirstOrDefault();
+            return response.Data;
         }
         #endregion
 

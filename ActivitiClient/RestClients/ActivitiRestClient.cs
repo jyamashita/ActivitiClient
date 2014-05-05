@@ -22,6 +22,8 @@ namespace ActivitiClient.RestClients
 
             this.ProcessDefinitions = new ProcessDefinitions(this.Client);
             this.ProcessInstances = new ProcessInstances(this.Client);
+            this.Forms = new Forms(this.Client);
+            this.Tasks = new Tasks(this.Client);
         }
         #endregion
 

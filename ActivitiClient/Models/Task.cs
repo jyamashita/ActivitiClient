@@ -30,9 +30,9 @@ namespace ActivitiClient.Models
 
         public int Priority { get; set; }
 
-        public string ProcessDefinition { get; set; }
+        public string ProcessDefinitionId { get; set; }
 
-        public string ProcessInstance { get; set; }
+        public string ProcessInstanceId { get; set; }
 
         public string Suspended { get; set; }
 
