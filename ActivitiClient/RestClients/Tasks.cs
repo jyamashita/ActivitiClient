@@ -103,10 +103,12 @@ namespace ActivitiClient.RestClients
             var param = (from name in variables.AllKeys
                          select new { name, value = variables.Get(name) }).ToList();
             var json = new {
-                action = action,
+                action = action.ToString(),
                 variables = param,
                 assignee = assignee,
             };
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(json);
             var response = base.Client.Execute<Models.Task>(request);
             base.HandleError(response);
         }

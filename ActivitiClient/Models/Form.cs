@@ -13,7 +13,7 @@ namespace ActivitiClient.Models
 
         public int DeploymentId { get; set; }
 
-        public int ProcessDefinitionId { get; set; }
+        public string ProcessDefinitionId { get; set; }
 
         public string processDefinitionUrl { get; set; }
 
@@ -22,5 +22,24 @@ namespace ActivitiClient.Models
         public string TaskUrl { get; set; }
 
         public List<FormProperty> FormProperties  { get; set; }
+
+        public List<ActivitiClient.Models.Bpmn.FormProperty> DetailFormProperties(List<Variable> variables)
+        {
+            var formProperties = this.FormProperties.Select(v => {
+                var variable = variables.SingleOrDefault(p => p.Name == v.Id);
+                return new ActivitiClient.Models.Bpmn.FormProperty {
+                    Id = v.Id,
+                    Name = v.Name,
+                    EnumValues = v.EnumValues,
+                    DatePattern = v.DatePattern,
+                    IsReadable = v.IsReadable,
+                    IsRequired = v.IsRequired,
+                    Type = v.Type,
+                    Value = variable.Value,
+                    IsWritable = false,
+                };
+            }).ToList();
+            return formProperties;
+        }
     }
 }

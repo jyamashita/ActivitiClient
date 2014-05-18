@@ -50,5 +50,16 @@ namespace ActivitiClient.RestClients
             return response.Data;
         }
         #endregion
+
+        #region List of variables for a process instance
+        public List<Variable> Variables(int processInstanceId)
+        {
+            var request = new RestRequest("runtime/process-instances/{processInstanceId}/variables", Method.GET);
+            request.AddUrlSegment("processInstanceId", processInstanceId.ToString());
+            var response = base.Client.Execute<List<Variable>>(request);
+            base.HandleError(response);
+            return response.Data;
+        }
+        #endregion
     }
 }

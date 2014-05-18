@@ -41,6 +41,26 @@ namespace ActivitiClient.Models.Bpmn
 
             return task.Extract(form);
         }
+
+        public List<FormProperty> FormProperties()
+        {
+            var tasks = new List<Task>();
+            tasks.Add(StartEvent[0]);
+            tasks.AddRange(UserTask);
+
+            var map = new Dictionary<string, FormProperty>();
+            tasks.ForEach(t => {
+                var formProperty = t.FormProperty;
+                formProperty.ForEach(p => {
+                    if (!map.Any(m => m.Key == p.Id))
+                        map.Add(p.Id, p);
+                    else
+                        map[p.Id] = p;
+                });
+            });
+
+            return map.Select(m => m.Value).ToList();
+        }
         #endregion
     }
 }

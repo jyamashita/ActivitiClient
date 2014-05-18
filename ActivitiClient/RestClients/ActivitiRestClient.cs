@@ -24,6 +24,8 @@ namespace ActivitiClient.RestClients
             this.ProcessInstances = new ProcessInstances(this.Client);
             this.Forms = new Forms(this.Client);
             this.Tasks = new Tasks(this.Client);
+            this.History = new History(this.Client);
+            this.Deployment = new Deployment(this.Client);
         }
         #endregion
 
@@ -35,6 +37,10 @@ namespace ActivitiClient.RestClients
         public RestClients.Tasks Tasks { get; set; }
 
         public RestClients.Forms Forms { get; set; }
+
+        public RestClients.History History { get; set; }
+
+        public RestClients.Deployment Deployment { get; set; }
         #endregion
     }
 }

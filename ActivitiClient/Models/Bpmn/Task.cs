@@ -33,6 +33,26 @@ namespace ActivitiClient.Models.Bpmn
             });
             return param;
         }
+
+        public List<ActivitiClient.Models.Bpmn.FormProperty> DetailFormProperties(List<Variable> variables)
+        {
+            var formProperties = this.FormProperty.Select(v => {
+                var variable = variables.SingleOrDefault(p => p.Name == v.Id);
+                return new ActivitiClient.Models.Bpmn.FormProperty {
+                    Id = v.Id,
+                    Name = v.Name,
+                    EnumValues = v.EnumValues,
+                    DatePattern = v.DatePattern,
+                    IsReadable = v.IsReadable,
+                    IsRequired = v.IsRequired,
+                    Type = v.Type,
+                    Value = variable.Value,
+                    IsWritable = false,
+                };
+            }).ToList();
+            return formProperties;
+        }
+
         #endregion
     }
 }

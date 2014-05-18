@@ -45,8 +45,14 @@
     <Compile Include="Extensions\RestRequest.cs" />
     <Compile Include="Extensions\StringExtention.cs" />
     <Compile Include="Models\DataSet.cs" />
+    <Compile Include="Models\Deployment.cs" />
+    <Compile Include="Models\FormProperty.cs" />
+    <Compile Include="Models\History.cs" />
+    <Compile Include="Models\Variable.cs" />
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\Task.cs" />
+    <Compile Include="RestClients\Deployment.cs" />
+    <Compile Include="RestClients\History.cs" />
     <Compile Include="RestClients\Tasks.cs" />
     <Compile Include="RestClients\Forms.cs" />
     <Compile Include="RestClients\ProcessInstances.cs" />
@@ -62,6 +68,7 @@
     <Compile Include="Models\ProcessInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestClients\RestClientBase.cs" />
+    <Compile Include="Models\VariableInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
